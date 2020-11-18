@@ -74,7 +74,7 @@ $records = $stmt -> execute();
     <br>
 <?php $i++; endwhile // ループここまで ?>
 
-<?php if ($i == 1): // submissionsテーブルから該当するレコードを一つも取得できなかったということなので ?>
+<?php if ($i === 1): // submissionsテーブルから該当するレコードを一つも取得できなかったということなので ?>
     <p>現在までに提出した課題はありません。</p>
 <?php endif ?>
 
