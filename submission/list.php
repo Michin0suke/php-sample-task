@@ -31,15 +31,15 @@ $records = $db->query($sql);
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>課題の提出状況</title>
+    <?=f('../components/head.html')?>
 </head>
 <body>
     <h1>提出されている課題一覧</h1>
     <hr>
     <p>現在までの提出状況</p>
 
-    <?php $i = 1; while($record = $records->fetchArray()): // submissionsテーブルの全レコードの数だけループさせる ?>
+<?php $i = 1; while($record = $records->fetchArray()): // submissionsテーブルの全レコードの数だけループさせる ?>
 
         <table border="1">
             <tr>
@@ -73,9 +73,11 @@ $records = $db->query($sql);
             </tr>
         </table>
 
-    <?php $i++; endwhile // ループここまで ?>
+<?php $i++; endwhile // ループここまで ?>
 
-<p><a href="../home.php">ホームに戻る</a></p>
-<a href="../logout.php">ログアウト</a>
+    <p><a href="../home.php">ホームに戻る</a></p>
+    <a href="../logout.php">ログアウト</a>
+
+    <?=f('../components/footer.html')?>
 </body>
 </html>

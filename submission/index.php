@@ -28,8 +28,8 @@ $records = $stmt -> execute();
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>課題提出ページ</title>
+    <?=f('../components/head.html')?>
 </head>
 <body>
     <h1>課題提出ページ</h1>
@@ -81,5 +81,7 @@ $records = $stmt -> execute();
     <hr>
     <p><a href="../home.php">ホームに戻る</a></p>
     <a href="../logout.php">ログアウト</a>
+
+    <?=f('../components/footer.html')?>
 </body>
 </html>

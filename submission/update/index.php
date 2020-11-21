@@ -52,13 +52,14 @@ if (!$record) {
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>課題の編集</title>
+    <?=f('../../components/head.html')?>
 </head>
 <body>
     <p style="color: red"><?=h($error_message) // エラーメッセージがあれば表示されます ?></p>
 
     <h2>編集欄</h2>
+
     <form action="text.php" method="post" enctype="multipart/form-data">
         <table border="1">
             <tr>
@@ -76,13 +77,17 @@ if (!$record) {
         </table>
         <input type="submit" value="変更する">
     </form>
+
     <form action="file.php" method="post" enctype="multipart/form-data">
         <p>登録済ファイル: <?=h($record['file_name_original']) // ファイルのオリジナル名です ?></p>
         <p>変更ファイル: <input type="file" name="submission"></p>
         <br>
         <input type="submit" value="変更する">
     </form>
+
     <hr>
     <a href="../index.php">←課題提出ページ</a>
+
+    <?=f('../../components/footer.html')?>
 </body>
 </html>

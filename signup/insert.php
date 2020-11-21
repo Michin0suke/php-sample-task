@@ -44,14 +44,20 @@ session_unset();
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>ログイン情報チェック</title>
+    <?=f('../components/head.html')?>
 </head>
-<p>以下の情報で登録されました。</p>
-<ul>
-    <li><b>user_id: </b><?=h($user_id) // エスケープして出力?></li>
-    <li><b>Password: パスワードは忘れないようにしてください</b></li>
-    <li><b>Mail: </b><?=h($mail) // エスケープして出力?></li>
-</ul>
-<a href="../index.php">ログイン画面</a>
+<body>
+    <p>以下の情報で登録されました。</p>
+
+    <ul>
+        <li><b>user_id: </b><?=h($user_id) // エスケープして出力?></li>
+        <li><b>Password: パスワードは忘れないようにしてください</b></li>
+        <li><b>Mail: </b><?=h($mail) // エスケープして出力?></li>
+    </ul>
+
+    <a href="../index.php">ログイン画面</a>
+
+    <?=f('../components/footer.html')?>
+</body>
 </html>

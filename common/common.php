@@ -62,6 +62,8 @@ function is_admin() {
     return $_SESSION['user_id'] === $admin_user_id;
 }
 
+// 以下は、ラッパー関数
+
 // SQLエスケープ
 function s($str) {
     // globalを使うと関数の外の変数が使える
@@ -72,4 +74,9 @@ function s($str) {
 // HTMLエスケープ
 function h($str) {
     return htmlspecialchars($str, ENT_QUOTES, 'UTF-8');
+}
+
+// 外部ファイルをインポートする
+function f($path) {
+    return file_get_contents($path);
 }

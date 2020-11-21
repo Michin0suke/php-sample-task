@@ -19,23 +19,28 @@ $error_message = $_GET['error_message'] ?? '';
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>登録画面</title>
+    <?=f('../components/head.html')?>
 </head>
 <body>
-<form action="check_format.php" method="post">
-    <table>
-        <caption>ユーザ登録</caption>
-        <tr><th>ユーザID</th><td><input type="text" name="user_id" size="40" maxlength="63"></td></tr>
-        <tr><th>パスワード</th><td><input type="password" name="password" size="40" maxlength="255"></td></tr>
-        <tr><th>メール</th><td><input type="text" name="mail" size="40" maxlength="255"></td></tr>
-    </table>
-    <p style="color: red"><?=h($error_message) // GETで渡されたエラーメッセージを出力 ?></p>
-    <input type="submit" value="submit">
-    <input type="reset" value="reset">
-</form>
-<a href="../index.php">
-    <button>ログイン画面に戻る</button>
-</a>
+    <form action="check_format.php" method="post">
+        <table>
+            <caption>ユーザ登録</caption>
+            <tr><th>ユーザID</th><td><input type="text" name="user_id" size="40" maxlength="63"></td></tr>
+            <tr><th>パスワード</th><td><input type="password" name="password" size="40" maxlength="255"></td></tr>
+            <tr><th>メール</th><td><input type="text" name="mail" size="40" maxlength="255"></td></tr>
+        </table>
+
+        <p style="color: red"><?=h($error_message) // GETで渡されたエラーメッセージを出力 ?></p>
+
+        <input type="submit" value="submit">
+        <input type="reset" value="reset">
+    </form>
+
+    <a href="../index.php">
+        <button>ログイン画面に戻る</button>
+    </a>
+
+    <?=f('../components/footer.html')?>
 </body>
 </html>

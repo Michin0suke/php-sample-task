@@ -27,14 +27,15 @@ $records = $db -> query($sql);
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
     <title>教材管理ページ</title>
+    <?=f('../components/head.html')?>
 </head>
 <body>
     <h1>教材管理ページ</h1>
     <p>ログインユーザ: <?=h($name) // ログインしているユーザID ?></p>
     <hr>
     <p>公開されている課題</p>
+
 <?php $i = 1; while($record = $records->fetchArray()): // tasks データベースに保存されているレコードの数だけ繰り返す ?>
     <table border="1">
             <tr>
@@ -78,5 +79,7 @@ $records = $db -> query($sql);
     <hr>
     <p><a href="../home.php">ホームに戻る</a></p>
     <a href="../logout.php">ログアウト</a>
+
+    <?=f('../components/footer.html')?>
 </body>
 </html>
