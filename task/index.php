@@ -30,55 +30,81 @@ $records = $db -> query($sql);
     <title>教材管理ページ</title>
     <?=f('../components/head.html')?>
 </head>
-<body>
-    <h1>教材管理ページ</h1>
-    <p>ログインユーザ: <?=h($name) // ログインしているユーザID ?></p>
-    <hr>
-    <p>公開されている課題</p>
+<body class="container mt-5">
+    <h1 class="mb-3">教材管理ページ</h1>
+    <p class="text-secondary justify-content-end">ログインユーザ: <?=h($name) // ログインしているユーザID ?></p>
 
-<?php $i = 1; while($record = $records->fetchArray()): // tasks データベースに保存されているレコードの数だけ繰り返す ?>
-    <table border="1">
+    <hr class="mb-5">
+    
+    <div class="mb-5">
+        <h2 class="mb-3">公開されている課題</h2>
+
+    <table class="table table-hover">
+        <thead class="thead-light">
             <tr>
-                <th width="20"><?=$i?></th>
-                <th colspan="3"><?=h($record['user_id'])?></th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    <a href="../uploaded_files/task/<?=h($record['file_name_internal'])?>">
-                        <?=h($record['title'])?>
-                    </a>
-                </td>
-                <td width="180">公開日時: <?=h($record['created_at'])?></td>
+                <th scope="col">No</th>
+                <th scope="col">ユーザーID</th>
+                <th scope="col">タイトル</th>
+                <th scope="col">提出日時</th>
                 <?php if(is_admin()): // 管理者のみに表示（ここから）?>
-                    <td width="40">
-                        <a href="delete.php?task_id=<?=h($record['id'])?>">消去</a>
-                    </td>
+                    <th scope="col">消去</th>
                 <?php endif // 管理者の場合のみ（ここまで）?>
             </tr>
+        </thead>
+        
+        <?php $i = 1; while($record = $records->fetchArray()): // tasks データベースに保存されているレコードの数だけ繰り返す ?>
+            <tbody>
+                <tr>
+                    <td scope="row"><?=$i?></td>
+                    <td scope="row"><?=h($record['user_id'])?></td>
+                    <td scope="row">
+                        <a href="../uploaded_files/task/<?=h($record['file_name_internal'])?>">
+                            <?=h($record['title'])?>
+                        </a>
+                    </td>
+                    <td scope="row">公開日時: <?=h($record['created_at'])?></td>
+
+                    <?php if(is_admin()): // 管理者のみに表示（ここから）?>
+                        <td scope="row">
+                            <a href="delete.php?task_id=<?=h($record['id'])?>" class="btn btn-danger">消去</a>
+                        </td>
+                    <?php endif // 管理者の場合のみ（ここまで）?>
+                </tr>
+            </tbody>
+        <?php $i++; endwhile ?>
     </table>
-    <br>
-<?php $i++; endwhile ?>
 
-<?php if($i === 1): // tasksデータベースにレコードが一つもない場合なので ?>
-    <p>登録されている情報はありません</p>
-<?php endif ?>
+    <?php if($i === 1): // tasksデータベースにレコードが一つもない場合なので ?>
+        <p class="text-muted">登録されている情報はありません</p>
+    <?php endif ?>
+    </div>
+    
 
-<?php if(is_admin()): // 管理者のみに表示 (ここから) ?>
+    <div class="mb-5">
+    <?php if(is_admin()): // 管理者のみに表示 (ここから) ?>
+        <h2 class="mb-3">アップロードするファイルの選択: </h2>
+        
+        <form action="insert.php" method="post" enctype="multipart/form-data">
+            <div class="form-group">
+                <label for="title">タイトル:</label>
+                <input type="text" name="title" id="title" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="file">ファイル:</label>
+                <input type="file" name="task" id="file" class="form-control-file">
+            </div>
+            <p class="text-danger mb-5"><?=h($error_message)?></p>
+            <input type="submit" value="アップロード" class="btn btn-primary">
+        </form>
+    <?php endif // 管理者のみの表示 (ここまで) ?>
+    </div>
+
     <hr>
-    <form action="insert.php" method="post" enctype="multipart/form-data">
-        <p>アップロードするファイルの選択: </p>
-        <table border="1">
-            <tr><th>題名</th><td><input type="text" name="title" size="30"></td></tr>
-            <tr><th>file</th><td><input type="file" name="task" size="50"></td></tr>
-        </table>
-        <p style="color: red"><?=h($error_message)?></p>
-        <input type="submit" value="アップロード">
-    </form>
-<?php endif // 管理者のみの表示 (ここまで) ?>
-
-    <hr>
-    <p><a href="../home.php">ホームに戻る</a></p>
-    <a href="../logout.php">ログアウト</a>
+    
+    <div class="mb-5">
+        <a href="../home.php" class="btn btn-outline-primary">ホームに戻る</a>
+        <a href="../logout.php" class="btn btn-outline-danger ml-3">ログアウト</a>
+    </div>
 
     <?=f('../components/footer.html')?>
 </body>

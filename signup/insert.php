@@ -47,7 +47,7 @@ session_unset();
     <title>ログイン情報チェック</title>
     <?=f('../components/head.html')?>
 </head>
-<body>
+<body class="container mt-5">
     <p>以下の情報で登録されました。</p>
 
     <ul>

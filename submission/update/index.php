@@ -55,34 +55,34 @@ if (!$record) {
     <title>課題の編集</title>
     <?=f('../../components/head.html')?>
 </head>
-<body>
+<body class="container mt-5">
     <p style="color: red"><?=h($error_message) // エラーメッセージがあれば表示されます ?></p>
 
-    <h2>編集欄</h2>
+    <h1 class="mb-4">課題の編集</h1>
 
-    <form action="text.php" method="post" enctype="multipart/form-data">
-        <table border="1">
-            <tr>
-                <th>題名</th>
-                <td colspan="3">
-                    <input type="text" name="title" value="<?=h($record['title']) // ファイル名です ?>" size="80">
-                </td>
-            </tr>
-            <tr>
-                <th>コメント</th>
-                <td colspan="3">
-                    <textarea name="comment" cols="80" rows="5"><?=h($record['comment']) // コメントです ?></textarea>
-                </td>
-            </tr>
-        </table>
-        <input type="submit" value="変更する">
+    <form action="text.php" method="post" enctype="multipart/form-data" class="mb-4">
+        <div class="form-group">
+            <label for="title">タイトル</label>
+            <input type="text" name="title" value="<?=h($record['title']) // ファイル名です ?>" id="title" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="comment">コメント</label>
+            <textarea name="comment" rows="5" id="comment" class="form-control"><?=h($record['comment']) // コメントです ?></textarea>
+        </div>
+
+        <input type="submit" value="変更する" class="btn btn-primary">
     </form>
+
+    <hr class="mb-4">
 
     <form action="file.php" method="post" enctype="multipart/form-data">
         <p>登録済ファイル: <?=h($record['file_name_original']) // ファイルのオリジナル名です ?></p>
-        <p>変更ファイル: <input type="file" name="submission"></p>
+        <div class="form-group mb-4">
+            <label for="file">変更ファイル:</label>
+            <input type="file" name="submission" id="file" class="form-control-file">
+        </div>
+        <input type="submit" value="変更する" class="btn btn-primary mb-3">
         <br>
-        <input type="submit" value="変更する">
     </form>
 
     <hr>

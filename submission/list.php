@@ -34,49 +34,42 @@ $records = $db->query($sql);
     <title>課題の提出状況</title>
     <?=f('../components/head.html')?>
 </head>
-<body>
+<body class="container mt-5">
     <h1>提出されている課題一覧</h1>
     <hr>
-    <p>現在までの提出状況</p>
+    <p class="text-secondary">現在までの提出状況</p>
 
-<?php $i = 1; while($record = $records->fetchArray()): // submissionsテーブルの全レコードの数だけループさせる ?>
+    <table class="table table-hover table-striped" class="mb-5">
+        <thead class="thead-light">
+            <th scope="col">No</th>
+            <th scope="col">タイトル</th>
+            <th scope="col">提出者ID</th>
+            <th scope="col">ファイル</th>
+            <th scope="col">投稿日時</th>
+            <th scope="col">コメント</th>
+        </thead>
+        <tbody>
+            <?php $i = 1; while($record = $records->fetchArray()): // submissionsテーブルの全レコードの数だけループさせる ?>
+                <tr>
+                    <th scope="row"><?=$i?></th>
+                    <td><?=h($record['title']) // ファイルの名前?></td>
+                    <td>提出者: <?=h($record['user_id']) // submissionを登録したユーザのユーザID ?></td>
+                    <td>
+                        <a href="../uploaded_files/submission/<?=h($record['file_name_internal']) // ファイルがサーバに実際に保存されている名前 ?>">
+                            <?=h($record['file_name_original']) // ファイルのアップロード時の元々の名前 ?>
+                        </a>
+                    </td>
+                    <td><?=h($record['updated_at']) // submissionsにレコードが保存された(もしくは修正された)日時 ?></td>
+                    <td><?=h($record['comment']) // コメント ?></td>
+                </tr>
+            <?php $i++; endwhile // ループここまで ?>
+        </tbody>
+    </table>
 
-        <table border="1">
-            <tr>
-                <th width="20">
-                    <?=$i?>
-                </th>
-                <th colspan="3">
-                    <?=h($record['title']) // ファイルの名前?>
-                </th>
-            </tr>
-            <tr>
-                <td colspan="2">
-                    提出者: <?=h($record['user_id']) // submissionを登録したユーザのユーザID ?>
-                </td>
-                <td width="180">
-                    <a href="../uploaded_files/submission/<?=h($record['file_name_internal']) // ファイルがサーバに実際に保存されている名前 ?>">
-                        <?=h($record['file_name_original']) // ファイルのアップロード時の元々の名前 ?>
-                    </a>
-                </td>
-                <td width="80">
-                    <?=h($record['updated_at']) // submissionsにレコードが保存された(もしくは修正された)日時 ?>
-                </td>
-            </tr>
-            <tr>
-                <td width="50">
-                    コメント
-                </td>
-                <td colspan="3">
-                    <?=h($record['comment']) // コメント ?>
-                </td>
-            </tr>
-        </table>
-
-<?php $i++; endwhile // ループここまで ?>
-
-    <p><a href="../home.php">ホームに戻る</a></p>
-    <a href="../logout.php">ログアウト</a>
+    <div class="mb-5">
+        <a href="../home.php" class="btn btn-outline-primary">ホームに戻る</a>
+        <a href="../logout.php" class="btn btn-outline-danger ml-3">ログアウト</a>
+    </div>
 
     <?=f('../components/footer.html')?>
 </body>
