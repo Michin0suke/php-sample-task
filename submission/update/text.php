@@ -14,7 +14,7 @@ require('../../common/common.php');
 login_check();
 
 // 各情報を変数に格納する（渡されていない場合はfalseを格納）
-$submission_id = $_SESSION['submission_id'] ?? false;
+$submission_id = $_GET['submission_id'] ?? false;
 $title = $_POST['title'] ?? false;
 $comment = $_POST['comment'] ?? false;
 
@@ -23,13 +23,13 @@ submission_change.phpからのアクセスであれば全ての情報が渡さ�
 どれか一つの情報が渡されていない時点で、submission_change.phpからの正常なアクセスではない
 */
 if (!$submission_id || !$title || !$comment) {
-    header('Location: index.php?error_message=不正なアクセスです。(submission/update/text)');
+    header("Location: index.php?submission_id=$submission_id&error_message=不正なアクセスです。(submission/update/text)");
     exit();
 }
 
 // 空文字が渡されていれば弾く
 if ($submission_id === '' || $title === '' || $comment === '') {
-    header('Location: index.php?error_message=空の項目があります。');
+    header("Location: index.php?submission_id=$submission_id&error_message=空の項目があります。");
     exit();
 }
 
@@ -52,4 +52,4 @@ $stmt -> execute() or die('エラー');
 unset($_SESSION['submission_id']);
 
 // submission.phpに戻す
-header('Location: ../index.php');
+header("Location: ../index.php?submission_id=$submission_id");

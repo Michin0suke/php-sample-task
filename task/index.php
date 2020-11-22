@@ -84,17 +84,19 @@ $records = $db -> query($sql);
     <?php if(is_admin()): // 管理者のみに表示 (ここから) ?>
         <h2 class="mb-3">アップロードするファイルの選択: </h2>
         
-        <form action="insert.php" method="post" enctype="multipart/form-data">
+        <form action="insert.php" id="file-upload-form" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">タイトル:</label>
-                <input type="text" name="title" id="title" class="form-control">
+                <input type="text" id="title" name="title" class="input-form form-control">
             </div>
             <div class="form-group">
                 <label for="file">ファイル:</label>
-                <input type="file" name="task" id="file" class="form-control-file">
+                <label id="drop-area">
+                    <input type="file" id="file">ファイルを追加してください。</input>
+                </label>
             </div>
-            <p class="text-danger mb-5"><?=h($error_message)?></p>
-            <input type="submit" value="アップロード" class="btn btn-primary">
+            <p id="error-message" class="text-danger mb-5"><?=h($error_message)?></p>
+            <input type="submit" value="アップロード" id="file-upload-button" class="btn btn-primary">
         </form>
     <?php endif // 管理者のみの表示 (ここまで) ?>
     </div>
@@ -107,5 +109,6 @@ $records = $db -> query($sql);
     </div>
 
     <?=f('../components/footer.html')?>
+    <script src="../components/drag_and_drop.js"></script>
 </body>
 </html>

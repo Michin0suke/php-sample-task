@@ -26,9 +26,6 @@ if (!$submission_id) {
     exit();
 }
 
-// 変更するタスクのIDをセッションに格納
-$_SESSION['submission_id'] = $submission_id;
-
 // エラーメッセージがGETで渡されている場合は変数に格納（渡されていない場合は空文字）
 $error_message = $_GET['error_message'] ?? '';
 
@@ -56,11 +53,11 @@ if (!$record) {
     <?=f('../../components/head.html')?>
 </head>
 <body class="container mt-5">
-    <p style="color: red"><?=h($error_message) // エラーメッセージがあれば表示されます ?></p>
+    <p id="error-message" class="text-danger"><?=h($error_message) // エラーメッセージがあれば表示されます ?></p>
 
     <h1 class="mb-4">課題の編集</h1>
 
-    <form action="text.php" method="post" enctype="multipart/form-data" class="mb-4">
+    <form action="text.php?submission_id=<?=$submission_id?>" method="post" enctype="multipart/form-data" class="mb-4">
         <div class="form-group">
             <label for="title">タイトル</label>
             <input type="text" name="title" value="<?=h($record['title']) // ファイル名です ?>" id="title" class="form-control">
@@ -75,13 +72,15 @@ if (!$record) {
 
     <hr class="mb-4">
 
-    <form action="file.php" method="post" enctype="multipart/form-data">
+    <form action="file.php?submission_id=<?=$submission_id?>" method="post" enctype="multipart/form-data" id="file-upload-form">
         <p>登録済ファイル: <?=h($record['file_name_original']) // ファイルのオリジナル名です ?></p>
         <div class="form-group mb-4">
             <label for="file">変更ファイル:</label>
-            <input type="file" name="submission" id="file" class="form-control-file">
+            <label id="drop-area">
+                <input type="file" id="file">ファイルを追加してください。</input>
+            </label>
         </div>
-        <input type="submit" value="変更する" class="btn btn-primary mb-3">
+        <input type="submit" value="変更する" class="btn btn-primary mb-3" id="file-upload-button">
         <br>
     </form>
 
@@ -89,5 +88,6 @@ if (!$record) {
     <a href="../index.php">←課題提出ページ</a>
 
     <?=f('../../components/footer.html')?>
+    <script src="../../components/drag_and_drop.js"></script>
 </body>
 </html>

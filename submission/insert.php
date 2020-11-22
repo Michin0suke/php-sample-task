@@ -18,9 +18,9 @@ $user_id = $_SESSION['user_id'];
 
 // 各情報を変数に格納する（渡されていない場合はfalseを格納）
 $title = $_POST['title'] ?? false;
-$file_name_original = $_FILES['submission']['name'] ?? false;
+$file_name_original = $_FILES['file']['name'] ?? false;
 $comment = $_POST['comment'] ?? false;
-$filepath_tmp = $_FILES['submission']['tmp_name'] ?? false;
+$filepath_tmp = $_FILES['file']['tmp_name'] ?? false;
 
 /*
 渡されていない情報がある場合（一つでも変数にfalseが入っている場合）は弾く
@@ -38,7 +38,7 @@ if ($title === '' || $file_name_original === '' || $comment === '' || $filepath_
 }
 
 // 拡張子判別
-preg_match_all('/\.\w+/', $_FILES['submission']['name'], $file_ext_matches);
+preg_match_all('/\.\w+/', $_FILES['file']['name'], $file_ext_matches);
 $file_ext = end($file_ext_matches[0]);
 
 // 実際に保存するファイルの名前を決める。他のファイルと絶対に被らないように、ハッシュを求めている。

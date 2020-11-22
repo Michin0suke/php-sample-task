@@ -35,22 +35,24 @@ $records = $stmt -> execute();
     <h1>課題提出ページ</h1>
     <p class="text-secondary">ログインユーザー: <?=h($user_id) // 現在ログインしているユーザID ?></p>
     <hr class="mb-5">
-    <form action="insert.php" method="post" enctype="multipart/form-data" class="mb-5">
+    <form action="insert.php" method="post" enctype="multipart/form-data" id="file-upload-form" class="mb-5">
         <h2 class="mb-4">アップロードするファイルの選択</h2>
         <div class="form-group mb-4">
             <label for="title">タイトル:</label>
-            <input type="text" name="title" size="50" id="title" class="form-control">
+            <input type="text" name="title" size="50" id="title" class="input-form form-control">
         </div>
         <div class="form-group mb-4">
             <label for="file">ファイル:</label>
-            <input type="file" name="submission" size="50" id="file" class="form-control-file">
+            <label id="drop-area">
+                <input type="file" id="file">ファイルを追加してください。</input>
+            </label>
         </div>
         <div class="form-group mb-4">
             <label for="comment">コメント:</label>
-            <textarea name="comment" rows="5" id="comment" class="form-control"></textarea>
+            <textarea name="comment" rows="5" id="comment" class="input-form form-control"></textarea>
         </div>
-        <p style="color: red"><?=h($error_message) // エラーメッセージを表示 ?></p>
-        <input type="submit" value="アップロード" class="btn btn-primary">
+        <p style="color: red" id="error-message"><?=h($error_message) // エラーメッセージを表示 ?></p>
+        <input type="submit" value="アップロード" id="file-upload-button" class="btn btn-primary">
     </form>
     <hr class="mb-5">
     <h2 class="mb-5">課題提出状況</h2>
@@ -95,5 +97,6 @@ $records = $stmt -> execute();
     </div>
 
     <?=f('../components/footer.html')?>
+    <script src="../components/drag_and_drop.js"></script>
 </body>
 </html>

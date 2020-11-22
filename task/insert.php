@@ -23,9 +23,9 @@ if (!is_admin()) {
 $user_id = $_SESSION['user_id'];
 
 // 各情報を変数に格納（情報が渡されていない場合はfalseを格納）
-$filepath_tmp = $_FILES['task']['tmp_name'] ?? false;
+$filepath_tmp = $_FILES['file']['tmp_name'] ?? false;
 $title = $_POST['title'] ?? false;
-$file_name_original = $_FILES['task']['name'] ?? false;
+$file_name_original = $_FILES['file']['name'] ?? false;
 
 /*
 task_change.phpからのアクセスであれば全ての情報が渡されているはずなので、

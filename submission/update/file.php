@@ -14,22 +14,22 @@ require('../../common/common.php');
 login_check();
 
 // 各情報を変数に格納する（渡されていない場合はfalseを格納）
-$submission_id = $_SESSION['submission_id'] ?? false;
-$file_name_original = $_FILES['submission']['name'] ?? false;
-$filepath_tmp = $_FILES['submission']['tmp_name'] ?? false;
+$submission_id = $_GET['submission_id'] ?? false;
+$file_name_original = $_FILES['file']['name'] ?? false;
+$filepath_tmp = $_FILES['file']['tmp_name'] ?? false;
 
 /*
 submission_change.phpからのアクセスであれば全ての情報が渡されているはずなので、
 どれか一つの情報が渡されていない時点で、submission_change.phpからの正常なアクセスではない
 */
 if (!$submission_id || !$file_name_original || !$filepath_tmp) {
-    header('Location:index.php?error_message=不正なアクセスです。(submission/update/file)');
+    header("Location:index.php?submission_id=$submission_id&error_message=不正なアクセスです。(submission/update/file)");
     exit();
 }
 
 // 空文字が渡されている場合は弾く
 if ($submission_id === '' || $file_name_original === '' || $filepath_tmp === '') {
-    header('Location: index.php?error_message=空の項目があります。');
+    header("Location: index.php?submission_id=$submission_id&error_message=空の項目があります。");
     exit();
 }
 
@@ -65,4 +65,4 @@ move_uploaded_file($filepath_tmp, $filepath);
 unset($_SESSION['submission_id']);
 
 // submission.phpに戻す
-header('Location: ../index.php');
+header("Location: ../index.php?submission_id=$submission_id");
