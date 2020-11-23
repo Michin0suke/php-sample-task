@@ -39,17 +39,17 @@ $records = $stmt -> execute();
         <h2 class="mb-4">アップロードするファイルの選択</h2>
         <div class="form-group mb-4">
             <label for="title">タイトル:</label>
-            <input type="text" name="title" size="50" id="title" class="input-form form-control">
+            <input type="text" name="title" size="50" id="title" placeholder="タイトルを入力してください。" class="input-form form-control">
         </div>
         <div class="form-group mb-4">
             <label for="file">ファイル:</label>
             <label id="drop-area">
-                <input type="file" id="file">ファイルを追加してください。</input>
+                <input type="file" id="file"><span class="default-text">ファイルを追加してください。<br>ドラッグ&ドロップで追加できます。</span>
             </label>
         </div>
         <div class="form-group mb-4">
             <label for="comment">コメント:</label>
-            <textarea name="comment" rows="5" id="comment" class="input-form form-control"></textarea>
+            <textarea name="comment" rows="5" id="comment" placeholder="コメントを入力してください。" class="input-form form-control"></textarea>
         </div>
         <p style="color: red" id="error-message"><?=h($error_message) // エラーメッセージを表示 ?></p>
         <input type="submit" value="アップロード" id="file-upload-button" class="btn btn-primary">

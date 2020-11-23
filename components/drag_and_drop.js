@@ -5,7 +5,7 @@ const DropAreaFunc = (dropArea) => {
             dropFiles = []
             dropArea.style.backgroundColor = 'white'
             dropArea.style.backgroundImage = ''
-            dropArea.innerHTML = 'ファイルを追加してください。'
+            dropArea.innerHTML = '<span class="default-text">ファイルを追加してください。<br>ドラッグ&ドロップで追加できます。</span>'
         },
         changeToHoverColor(e) {
             e.preventDefault()
@@ -21,8 +21,10 @@ const DropAreaFunc = (dropArea) => {
             reader.readAsDataURL(file)
         },
         showFileNames(files) {
-            dropArea.innerHTML = ''
-            files.forEach(file => dropArea.innerHTML += file.name + '<br>')
+            let html = '<span class="file-names">'
+            files.forEach(file => html += `${file.name}<br>`)
+            html += '</span>'
+            dropArea.innerHTML = html
         }
     }
 }

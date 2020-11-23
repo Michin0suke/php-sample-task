@@ -31,7 +31,7 @@ login_check();
         </a>
 
         <a href="submission/index.php" class="col-md mb-5">
-            <button class="btn btn-lg btn-primary col">提出した課題</button>
+            <button class="btn btn-lg btn-primary col">課題の提出</button>
         </a>
 
 <?php if(is_admin()): // 管理者のみに表示 (ここから) ?>

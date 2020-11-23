@@ -87,12 +87,13 @@ $records = $db -> query($sql);
         <form action="insert.php" id="file-upload-form" method="post" enctype="multipart/form-data">
             <div class="form-group">
                 <label for="title">タイトル:</label>
-                <input type="text" id="title" name="title" class="input-form form-control">
+                <input type="text" id="title" name="title" placeholder="タイトルを入力してください。" class="input-form form-control">
             </div>
             <div class="form-group">
                 <label for="file">ファイル:</label>
                 <label id="drop-area">
-                    <input type="file" id="file">ファイルを追加してください。</input>
+                    <input type="file" id="file">
+                    <span class="default-text">ファイルを追加してください。<br>ドラッグ&ドロップで追加できます。</span>
                 </label>
             </div>
             <p id="error-message" class="text-danger mb-5"><?=h($error_message)?></p>

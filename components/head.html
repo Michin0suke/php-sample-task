@@ -15,20 +15,29 @@
 <style>
     #drop-area {
         display: block;
-        margin: 20px auto;
-        padding: 7px;
-        width: 100%;
-        max-width: 500px;
+        margin: 0 auto;
+        padding: 7px 13px;
         height: 30vw;
         max-height: 300px;
-        border: solid #bbb 1px;
+        border: solid #ccc 1px;
         border-radius: 5px;
         background-size: contain;
         background-position: center;
         background-repeat: no-repeat;
         text-decoration: none;
     }
-    input[type="file"] {
+    #file-upload-form input[type="file"] {
         display: none;
+    }
+    #file-upload-form #drop-area .default-text {
+        color: #777;
+        line-height: 30px;
+    }
+    #file-upload-form #drop-area .file-names {
+        padding: 3px 5px;
+        color: #555;
+        line-height: 30px;
+        background-color: rgba(255, 255, 255, 0.6);
+        box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.6);
     }
 </style>

@@ -41,7 +41,7 @@ $error_message = $_GET['error_message'] ?? '';
         <p class="text-danger mb-5"><?=h($error_message) // GETで渡されたエラーメッセージを出力 ?></p>
 
         <input type="submit" value="登録" class="btn btn-primary">
-        <input type="reset" value="リセット" class="btn btn-danger">
+        <input type="reset" value="リセット" class="btn btn-danger ml-3">
     </form>
 
     <a href="../index.php">

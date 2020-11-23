@@ -42,7 +42,7 @@ $error_message = $_GET['error_message'] ?? '';
         </div>
         <div class="mb-2">
             <input type="submit" value="ログイン" class="btn btn-primary">
-            <input type="reset" value="リセット" class="btn btn-danger">
+            <input type="reset" value="リセット" class="btn btn-danger ml-3">
         </div>
         <br>
     </form>

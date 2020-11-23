@@ -53,6 +53,8 @@ if (!$record) {
     <?=f('../../components/head.html')?>
 </head>
 <body class="container mt-5">
+    <a href="../index.php">←課題提出ページ</a>
+    
     <p id="error-message" class="text-danger"><?=h($error_message) // エラーメッセージがあれば表示されます ?></p>
 
     <h1 class="mb-4">課題の編集</h1>
@@ -77,7 +79,7 @@ if (!$record) {
         <div class="form-group mb-4">
             <label for="file">変更ファイル:</label>
             <label id="drop-area">
-                <input type="file" id="file">ファイルを追加してください。</input>
+                <input type="file" id="file"><span class="default-text">ファイルを追加してください。<br>ドラッグ&ドロップで追加できます。</span>
             </label>
         </div>
         <input type="submit" value="変更する" class="btn btn-primary mb-3" id="file-upload-button">
@@ -86,6 +88,8 @@ if (!$record) {
 
     <hr>
     <a href="../index.php">←課題提出ページ</a>
+    <br>
+    <br>
 
     <?=f('../../components/footer.html')?>
     <script src="../../components/drag_and_drop.js"></script>
